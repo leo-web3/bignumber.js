@@ -1,3 +1,10 @@
+#### 0.0.1
+* 20/11/24
+* #1 Add BigInt input support for BigNumber constructor.
+* #2 Add toBigInt method for BigNumber to convert back to BigInt.
+* [FEATURE] Improved interoperability between BigInt and BigNumber for more flexible numeric calculations.
+
+# MikeMcl/bignumber.js changelog - 9.1.3
 #### 9.1.2
 * 28/08/23
 * #354 Amend `round` to avoid bug in v8 Maglev compiler.

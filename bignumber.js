@@ -45,6 +45,7 @@
  *      toPrecision                     |
  *      toString                        |
  *      valueOf                         |
+ *      toBigInt                        |
  *
  */
 
@@ -186,10 +187,11 @@
       // Enable constructor call without `new`.
       if (!(x instanceof BigNumber)) return new BigNumber(v, b);
 
+       // Convert BigInt to string
       if (typeof v === 'bigint') {
-        v = v.toString(); // Convert BigInt to string
+        v = v.toString();
       }
-      
+
       if (b == null) {
 
         if (v && v._isBigNumber === true) {
@@ -2765,6 +2767,10 @@
       return valueOf(this);
     };
 
+    /*
+    * Return as toBigInt, but do not accept a base argument, and include the minus sign for
+    * negative zero.
+    */
     P.toBigInt = function () {
       if (!this.c) throw new Error('Cannot convert NaN or Infinity to BigInt');
       return BigInt(this.toFixed(0));

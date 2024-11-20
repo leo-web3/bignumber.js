@@ -42,6 +42,7 @@
  *      toPrecision                     |
  *      toString                        |
  *      valueOf                         |
+ *      toBigInt                        |
  *
  */
 
@@ -182,6 +183,11 @@ function clone(configObject) {
 
     // Enable constructor call without `new`.
     if (!(x instanceof BigNumber)) return new BigNumber(v, b);
+
+     // Convert BigInt to string
+    if (typeof v === 'bigint') {
+      v = v.toString();
+    }
 
     if (b == null) {
 
@@ -2757,8 +2763,16 @@ function clone(configObject) {
   P.valueOf = P.toJSON = function () {
     return valueOf(this);
   };
-
-
+  
+  /*
+   * Return as toBigInt, but do not accept a base argument, and include the minus sign for
+   * negative zero.
+   */
+  P.toBigInt = function () {
+    if (!this.c) throw new Error('Cannot convert NaN or Infinity to BigInt');
+    return BigInt(this.toFixed(0));
+  };
+  
   P._isBigNumber = true;
 
   P[Symbol.toStringTag] = 'BigNumber';

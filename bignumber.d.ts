@@ -324,7 +324,7 @@ export namespace BigNumber {
   type Constructor = typeof BigNumber;
   type ModuloMode = 0 | 1 | 3 | 6 | 9;
   type RoundingMode = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  type Value = string | number | Instance;
+  type Value = string | number | BigInt | Instance ;
 }
 
 export declare class BigNumber implements BigNumber.Instance {
@@ -1506,9 +1506,12 @@ export declare class BigNumber implements BigNumber.Instance {
    * x.valueOf()                     // '-0'
    * y = new BigNumber('1.777e+457')
    * y.valueOf()                     // '1.777e+457'
+   * y.toBigInt()                    // 1777n
    * ```
    */
   valueOf(): string;
+
+  toBigInt(): bigint;
 
   /** Helps ES6 import. */
   private static readonly default?: BigNumber.Constructor;
