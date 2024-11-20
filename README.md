@@ -1,14 +1,14 @@
-![bignumber.js](https://raw.githubusercontent.com/MikeMcl/bignumber.js/gh-pages/bignumberjs.png)
+![@yes-web3/bignumber.js](https://raw.githubusercontent.com/MikeMcl/bignumber.js/gh-pages/bignumberjs.png)
 
 A JavaScript library for arbitrary-precision decimal and non-decimal arithmetic.
 
-[![npm version](https://img.shields.io/npm/v/bignumber.js.svg)](https://www.npmjs.com/package/bignumber.js)
-[![npm downloads](https://img.shields.io/npm/dw/bignumber.js)](https://www.npmjs.com/package/bignumber.js)
+[![npm version](https://img.shields.io/npm/v/@yes-web3/bignumber.js.svg)](https://www.npmjs.com/package/@yes-web3/bignumber.js)
+[![npm downloads](https://img.shields.io/npm/dw/@yes-web3/bignumber.js)](https://www.npmjs.com/package/@yes-web3/bignumber.js)
 
 <br />
 
 ## Features
-
+- **Improved interoperability between BigInt and BigNumber for more flexible numeric calculations.** 
 - Integers and decimals
 - Simple API but full-featured
 - Faster, smaller, and perhaps easier to use than JavaScript versions of Java's BigDecimal
@@ -18,9 +18,11 @@ A JavaScript library for arbitrary-precision decimal and non-decimal arithmetic.
 - Supports cryptographically-secure pseudo-random number generation
 - No dependencies
 - Wide platform compatibility: uses JavaScript 1.5 (ECMAScript 3) features only
-- Comprehensive [documentation](http://mikemcl.github.io/bignumber.js/) and test set
+<!-- - Comprehensive [documentation](http://mikemcl.github.io/bignumber.js/) and test set -->
 
 ![API](https://raw.githubusercontent.com/MikeMcl/bignumber.js/gh-pages/API.png)
+
+**add: toBigInt methods**
 
 If a smaller and simpler library is required see [big.js](https://github.com/MikeMcl/big.js/).
 It's less than half the size but only works with decimal numbers and only has half the methods.
@@ -48,31 +50,31 @@ import BigNumber from './path/to/bignumber.mjs';
 > Get a minified version from a CDN:
 
 ```html
-<script src='https://cdn.jsdelivr.net/npm/bignumber.js@9.1.2/bignumber.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@yes-web3/bignumber.js@0.0.2/bignumber.min.js'></script>
 ```
 
 ### [Node.js](http://nodejs.org)
 
 ```bash
-npm install bignumber.js
+npm install @yes-web3/bignumber.js
 ```
 
 ```javascript
-const BigNumber = require('bignumber.js');
+const BigNumber = require('@yes-web3/bignumber.js');
 ```
 
 > ES module
 
 ```javascript
-import BigNumber from "bignumber.js";
-import { BigNumber } from "./node_modules/bignumber.js/bignumber.mjs";
+import BigNumber from "@yes-web3/bignumber.js";
+import { BigNumber } from "./node_modules/@yes-web3/bignumber.js/bignumber.mjs";
 ```
 
 ### [Deno](https://deno.land/)
 
 ```javascript
-import BigNumber from 'https://raw.githubusercontent.com/mikemcl/bignumber.js/v9.1.2/bignumber.mjs';
-import BigNumber from 'https://unpkg.com/bignumber.js@latest/bignumber.mjs';
+import BigNumber from 'https://raw.githubusercontent.com/leo-web3/bignumber.js/v0.0.2/bignumber.mjs';
+import BigNumber from 'https://unpkg.com/bignumber.js@latest/@yes-web3/bignumber.mjs';
 ```
 
 ## Use
@@ -92,6 +94,7 @@ To get the string value of a BigNumber use [`toString()`](http://mikemcl.github.
 let x = new BigNumber('1111222233334444555566');
 x.toString();                       // "1.111222233334444555566e+21"
 x.toFixed();                        // "1111222233334444555566"
+x.toBigInt();                        // "1111222233334444555566n"
 ```
 
 If the limited precision of Number values is not well understood, it is recommended to create BigNumbers from String values rather than Number values to avoid a potential loss of precision.
@@ -159,6 +162,7 @@ x.toExponential(5)                  // "2.55500e+2"
 x.toFixed(5)                        // "255.50000"
 x.toPrecision(5)                    // "255.50"
 x.toNumber()                        //  255.5
+x.toBigInt()                        //  255n
 ```
 
  A base can be specified for [`toString`](http://mikemcl.github.io/bignumber.js/#toS).

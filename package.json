@@ -1,7 +1,7 @@
 {
   "name": "@yes-web3/bignumber.js",
   "description": "A library for arbitrary-precision decimal and non-decimal arithmetic fork MikeMcl/bignumber.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "arbitrary",
     "precision",
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/MikeMcl/bignumber.js.git"
+    "url": "https://github.com/leo-web3/bignumber.js.git"
   },
   "main": "bignumber",
   "module": "bignumber.mjs",

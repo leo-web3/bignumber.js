@@ -58,7 +58,7 @@ li span{float:right;margin-right:10px;color:#c0c0c0}
 
   <div class="nav">
 
-    <b>v9.0.2</b>
+    <b>v0.0.1</b>
 
 	<a class='nav-title' href="#">API</a>
 
@@ -144,6 +144,7 @@ li span{float:right;margin-right:10px;color:#c0c0c0}
       <li><a href="#toP"    >toPrecision           </a>                  </li>
       <li><a href="#toS"    >toString              </a>                  </li>
       <li><a href="#valueOf">valueOf               </a>                  </li>
+      <li><a href="#toBigInt">toBigInt               </a>                  </li>
     </ul>
 
     <a href="#instance-properties">Properties</a>
@@ -165,12 +166,13 @@ li span{float:right;margin-right:10px;color:#c0c0c0}
     <h1>bignumber<span id='js'>.js</span></h1>
 
     <p>A JavaScript library for arbitrary-precision arithmetic.</p>
-    <p><a href="https://github.com/MikeMcl/bignumber.js">Hosted on GitHub</a>. </p>
+    <p><a href="https://github.com/MikeMcl/bignumber.js">source: Hosted on GitHub</a>. </p>
+    <p><a href="https://github.com/leo-web3/bignumber.js">my github</a>. </p>
 
     <h2>API</h2>
 
     <p>
-      See the <a href='https://github.com/MikeMcl/bignumber.js'>README</a> on GitHub for a
+      See the <a href='https://github.com/leo-web3/bignumber.js'>README</a> on GitHub for a
       quick-start introduction.
     </p>
     <p>
@@ -1921,6 +1923,26 @@ z.toExponential()                     // '-1.234567e+4'
 z.c                                   // '1,2,3,4,5,6,7'
 z.e                                   // 4
 z.s                                   // -1</pre>
+
+<h5 id="toBigInt">toBigInt<code class='inset'>.toBigInt() <i>&rArr; bigint</i></code></h5>
+<p>Returns the value of this BigNumber as a JavaScript bigint primitive.</p>
+<p>
+  This method is identical to using type coercion with the unary plus operator.
+</p>
+<pre>
+x = new BigNumber(456.789)
+x.toNumber()                    // 456.789
+x.toBigInt()                    // 456n
+
+y = new BigNumber('45987349857634085409857349856430985')
+y.toNumber()                    // 4.598734985763409e+34
+y.toBigInt()                    // 45987349857634085409857349856430985n
+
+z = new BigNumber(-0)
+1 / z.toNumber()                // -Infinity
+1 / +z                          // -Infinity
+1 / z.toBigInt()                // Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+</pre>
 
 
 
