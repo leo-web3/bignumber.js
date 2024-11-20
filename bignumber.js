@@ -186,6 +186,10 @@
       // Enable constructor call without `new`.
       if (!(x instanceof BigNumber)) return new BigNumber(v, b);
 
+      if (typeof v === 'bigint') {
+        v = v.toString(); // Convert BigInt to string
+      }
+      
       if (b == null) {
 
         if (v && v._isBigNumber === true) {
@@ -2761,6 +2765,10 @@
       return valueOf(this);
     };
 
+    P.toBigInt = function () {
+      if (!this.c) throw new Error('Cannot convert NaN or Infinity to BigInt');
+      return BigInt(this.toFixed(0));
+    };
 
     P._isBigNumber = true;
 
