@@ -140,6 +140,7 @@ li span{float:right;margin-right:10px;color:#c0c0c0}
       <li><a href="#toFor"  >toFormat              </a>                  </li>
       <li><a href="#toFr"   >toFraction            </a>                  </li>
       <li><a href="#toJSON" >toJSON                </a>                  </li>
+      <li><a href="#toL"    >toLocaleString        </a>                  </li>
       <li><a href="#toN"    >toNumber              </a>                  </li>
       <li><a href="#toP"    >toPrecision           </a>                  </li>
       <li><a href="#toS"    >toString              </a>                  </li>
@@ -1187,10 +1188,8 @@ x = new BigNumber(1)
 x.isFinite()                    // true
 y = new BigNumber(Infinity)
 y.isFinite()                    // false</pre>
-    <p>
-      Note: The native method <code>isFinite()</code> can be used if
-      <code>n &lt;= Number.MAX_VALUE</code>.
-    </p>
+    <p>Note: The native method <code>isFinite()</code> can be used if
+      <code>n &lt;= Number.MAX_VALUE</code>.</p>
 
 
 
@@ -1720,7 +1719,7 @@ x.toFraction()                  // '7, 4'
 
 pi = new BigNumber('3.14159265358')
 pi.toFraction()                 // '157079632679,50000000000'
-pi.toFraction(100000)           // '312689, 99532'
+pi.toFraction(100000)           // '355, 113'
 pi.toFraction(10000)            // '355, 113'
 pi.toFraction(100)              // '311, 99'
 pi.toFraction(10)               // '22, 7'
@@ -1745,6 +1744,39 @@ JSON.parse(str, function (key, val) {
 })</pre>
 
 
+
+    <h5 id="toL">
+      toLocaleString<code class='inset'>.toLocaleString([locales [, options]]) <i>&rArr; string</i></code>
+    </h5>
+    <p>
+      <code>locales</code>: <i>string | Array</i>: a BCP 47 language tag, or an array of such strings<br />
+      <code>options</code>: <i>object</i>: an object with properties that help format the number
+    </p>
+    <p>
+      Returns a string with a language-sensitive representation of this BigNumber.
+      If the number is too large or small for native handling, it will fallback to toString().
+    </p>
+    <p>
+      The <code>locales</code> and <code>options</code> arguments let applications specify the 
+      language whose formatting conventions should be used and customize the behavior of the function.
+      See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a>
+      for details about these arguments.
+    </p>
+    <pre>
+x = new BigNumber('123456.789')
+x.toLocaleString()                    // '123,456.789' in en-US
+x.toLocaleString('de-DE')             // '123.456,789' in German
+x.toLocaleString('zh-CN')             // '123,456.789' in Simplified Chinese
+
+// Using options
+x.toLocaleString('en-US', {
+  style: 'currency',
+  currency: 'USD'
+})                                    // '$123,456.79'
+
+// Numbers too large for native handling
+y = new BigNumber('1.234e+500')
+y.toLocaleString()                    // '1.234e+500'</pre>
 
     <h5 id="toN">toNumber<code class='inset'>.toNumber() <i>&rArr; number</i></code></h5>
     <p>Returns the value of this BigNumber as a JavaScript number primitive.</p>

@@ -1424,6 +1424,17 @@ export declare class BigNumber implements BigNumber.Instance {
   toNumber(): number;
 
   /**
+   * Returns a string with a language-sensitive representation of this BigNumber.
+   * If the number is too large or small for native handling, it will fallback to toString().
+   *
+   * @param locales A string with a BCP 47 language tag, or an array of such strings.
+   * @param options An object adjusting the output format.
+   * @returns A language-sensitive string representation of this BigNumber.
+   */
+  toLocaleString(locales?: string | string[], options?: Intl.NumberFormatOptions): string;
+
+
+  /**
    * Returns a string representing the value of this BigNumber rounded to `significantDigits`
    * significant digits using rounding mode `roundingMode`.
    *

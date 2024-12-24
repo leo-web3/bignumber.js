@@ -42,6 +42,7 @@
  *      toFraction                      |
  *      toJSON                          |
  *      toNumber                        |
+ *      toLocaleString                  |
  *      toPrecision                     |
  *      toString                        |
  *      valueOf                         |
@@ -2696,6 +2697,25 @@
       return +valueOf(this);
     };
 
+    /*
+    * Return a string representing this BigNumber value in the current locale format
+    */
+    P.toLocaleString = function (locales, options) {
+      var x = this;
+      
+      if (!x.isFinite()) return x.toString();
+      
+      // Convert to number for using native toLocaleString
+      // Note: This might lose precision for very large numbers
+      var num = x.toNumber();
+      
+      // If the number is too large or small for native handling
+      if (!isFinite(num)) {
+        return x.toString();
+      }
+      
+      return num.toLocaleString(locales, options);
+    };
 
     /*
      * Return a string representing the value of this BigNumber rounded to sd significant digits
