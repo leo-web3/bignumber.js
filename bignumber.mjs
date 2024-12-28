@@ -2688,10 +2688,15 @@ function clone(configObject) {
 
 
   /*
-   * Return the value of this BigNumber converted to a number primitive.
-   */
-  P.toNumber = function () {
-    return +valueOf(this);
+    * Return the value of this BigNumber converted to a number primitive.
+    */
+  P.toNumber = function (decimalPlaces) {
+    var x = this;
+    if (decimalPlaces !== undefined && !isNaN(decimalPlaces)) {
+      // Use toFixed to handle decimal places
+      return +x.toFixed(decimalPlaces);
+    }
+    return +valueOf(x);
   };
 
   /*

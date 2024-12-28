@@ -1778,18 +1778,20 @@ x.toLocaleString('en-US', {
 y = new BigNumber('1.234e+500')
 y.toLocaleString()                    // '1.234e+500'</pre>
 
-    <h5 id="toN">toNumber<code class='inset'>.toNumber() <i>&rArr; number</i></code></h5>
-    <p>Returns the value of this BigNumber as a JavaScript number primitive.</p>
+    <h5 id="toN">toNumber<code class='inset'>.toNumber([decimalPlaces]) <i>&rArr; number</i></code></h5>
+    <p>Returns the value of this BigNumber as a JavaScript number primitive. If decimalPlaces is provided and is not NaN, the result will be rounded to the specified number of decimal places.</p>
     <p>
       This method is identical to using type coercion with the unary plus operator.
     </p>
     <pre>
 x = new BigNumber(456.789)
 x.toNumber()                    // 456.789
+x.toNumber(2)                   // 456.79
 +x                              // 456.789
 
 y = new BigNumber('45987349857634085409857349856430985')
 y.toNumber()                    // 4.598734985763409e+34
+y.toNumber(2)                   // 4.60e+34
 
 z = new BigNumber(-0)
 1 / z.toNumber()                // -Infinity
@@ -1891,7 +1893,7 @@ z.toString(10)                  // '1.2346'</pre>
       the minus sign for negative zero.
     </p>
     <pre>
-x = new BigNumber('-0')
+x = new BigNumber(-0)
 x.toString()                    // '0'
 x.valueOf()                     // '-0'
 y = new BigNumber('1.777e+457')

@@ -1405,13 +1405,17 @@ export declare class BigNumber implements BigNumber.Instance {
 
   /**
    * Returns the value of this BigNumber as a JavaScript primitive number.
-   *
+   * If decimalPlaces is provided and is not NaN, the result will be rounded to the specified number of decimal places.
+   * 
+   * @param decimalPlaces Optional. The number of decimal places to round to.
    * Using the unary plus operator gives the same result.
    *
    * ```ts
    * x = new BigNumber(456.789)
    * x.toNumber()                    // 456.789
    * +x                              // 456.789
+   * x.toNumber(1)                   // 456.8
+   * x.toNumber(2)                   // 456.79
    *
    * y = new BigNumber('45987349857634085409857349856430985')
    * y.toNumber()                    // 4.598734985763409e+34
@@ -1419,9 +1423,10 @@ export declare class BigNumber implements BigNumber.Instance {
    * z = new BigNumber(-0)
    * 1 / z.toNumber()                // -Infinity
    * 1 / +z                          // -Infinity
+   * 
    * ```
    */
-  toNumber(): number;
+  toNumber(decimalPlaces?: number): number;
 
   /**
    * Returns a string with a language-sensitive representation of this BigNumber.
